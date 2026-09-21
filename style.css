@@ -1,99 +1,108 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f7f5ff;
-    color: #252331;
-    max-width: 700px;
-    margin: auto;
-    padding: 25px;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
+    <title>Secret - Improve Every Day</title>
 
-header h1 {
-    font-size: 38px;
-    letter-spacing: 2px;
-}
+    <link rel="stylesheet" href="style.css">
+</head>
 
-header p {
-    margin-top: 7px;
-    color: #777;
-}
+<body>
 
-.stats {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+<header>
+    <div class="logo">SECRET ✦</div>
+    <p>Focus. Learn. Improve.</p>
+</header>
 
-.stats div {
-    flex: 1;
-    background: white;
-    padding: 18px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-}
+<main>
 
-.stats strong {
-    display: block;
-    font-size: 22px;
-}
+    <section class="stats">
 
-.stats span {
-    color: #777;
-    font-size: 13px;
-}
+        <div class="stat-card">
+            <span>🔥</span>
+            <strong id="streak">0</strong>
+            <small>Streak</small>
+        </div>
 
-.menu {
-    display: grid;
-    gap: 14px;
-}
+        <div class="stat-card">
+            <span>⭐</span>
+            <strong id="xp">0</strong>
+            <small>XP</small>
+        </div>
 
-.menu button {
-    width: 100%;
-    border: none;
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: left;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    font-size: 26px;
-}
+        <div class="stat-card">
+            <span>🎯</span>
+            <strong id="sessions">0</strong>
+            <small>Sessions</small>
+        </div>
 
-.menu button strong {
-    display: block;
-    margin-top: 5px;
-    font-size: 20px;
-}
+    </section>
 
-.menu button small {
-    display: block;
-    margin-top: 5px;
-    color: #777;
-    font-size: 14px;
-}
+    <section class="hero">
+        <h2>Ready to improve? 🚀</h2>
+        <p>Choose an activity and start your session.</p>
+    </section>
 
-.menu button:hover {
-    transform: translateY(-2px);
-}
+    <section class="menu">
 
-#content {
-    margin-top: 25px;
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-}
+        <button class="menu-card" onclick="openFocus()">
+            <span class="icon">🎯</span>
+            <div>
+                <strong>Focus</strong>
+                <small>Deep work without distractions</small>
+            </div>
+        </button>
 
-#content h2 {
-    margin-bottom: 10px;
-}
+        <button class="menu-card" onclick="openGames()">
+            <span class="icon">🧠</span>
+            <div>
+                <strong>Mind Games</strong>
+                <small>Train your brain</small>
+            </div>
+        </button>
+
+        <button class="menu-card" onclick="openQuiz()">
+            <span class="icon">📚</span>
+            <div>
+                <strong>Quiz</strong>
+                <small>Test your knowledge</small>
+            </div>
+        </button>
+
+        <button class="menu-card" onclick="openChallenge()">
+            <span class="icon">⚡</span>
+            <div>
+                <strong>Daily Challenge</strong>
+                <small>Complete today's goal</small>
+            </div>
+        </button>
+
+        <button class="menu-card" onclick="openProgress()">
+            <span class="icon">📊</span>
+            <div>
+                <strong>Progress</strong>
+                <small>See your improvement</small>
+            </div>
+        </button>
+
+    </section>
+
+    <section id="content">
+
+        <h2>👋 Welcome to Secret</h2>
+
+        <p>
+            Small improvements every day create big results.
+        </p>
+
+    </section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
