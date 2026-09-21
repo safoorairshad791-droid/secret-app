@@ -1,78 +1,208 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Secret</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#8b7cf6">
+
+    <title>Secret ✦</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>SECRET ✦</h1>
-        <p>Improve 1% every day.</p>
-    </header>
+<header>
 
-    <main>
+    <div class="logo">
+        SECRET ✦
+    </div>
 
-        <section class="stats">
+    <p>
+        Focus. Learn. Improve.
+    </p>
+
+</header>
+
+
+<main>
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <span>🔥</span>
+            <strong id="streak">0</strong>
+            <small>Streak</small>
+        </div>
+
+        <div class="stat-card">
+            <span>⭐</span>
+            <strong id="xp">0</strong>
+            <small>XP</small>
+        </div>
+
+        <div class="stat-card">
+            <span>🎯</span>
+            <strong id="sessions">0</strong>
+            <small>Sessions</small>
+        </div>
+
+    </section>
+
+
+    <!-- WELCOME -->
+
+    <section class="hero">
+
+        <h2>
+            Welcome back 👋
+        </h2>
+
+        <p>
+            Small progress every day creates big results.
+        </p>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section class="menu">
+
+        <button
+            class="menu-card"
+            onclick="openFocus()">
+
+            <span class="icon">🎯</span>
 
             <div>
-                <strong id="streak">🔥 0</strong>
-                <span>Streak</span>
+
+                <strong>
+                    Focus
+                </strong>
+
+                <small>
+                    Study without distractions
+                </small>
+
             </div>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="openGames()">
+
+            <span class="icon">🧠</span>
 
             <div>
-                <strong id="xp">⭐ 0</strong>
-                <span>XP</span>
+
+                <strong>
+                    Mind Games
+                </strong>
+
+                <small>
+                    Sharpen your brain
+                </small>
+
             </div>
 
-        </section>
+        </button>
 
-        <section class="menu">
 
-            <button onclick="openFocus()">
-                🎯
-                <strong>Focus</strong>
-                <small>Concentrate without distractions</small>
-            </button>
+        <button
+            class="menu-card"
+            onclick="openQuiz()">
 
-            <button onclick="openGames()">
-                🧠
-                <strong>Mind Games</strong>
-                <small>Train your brain</small>
-            </button>
+            <span class="icon">📚</span>
 
-            <button onclick="openQuiz()">
-                📚
-                <strong>Quiz</strong>
-                <small>Test your knowledge</small>
-            </button>
+            <div>
 
-            <button onclick="openChallenge()">
-                ⚡
-                <strong>Daily Challenge</strong>
-                <small>Improve every day</small>
-            </button>
+                <strong>
+                    Quiz
+                </strong>
 
-        </section>
+                <small>
+                    Test your knowledge
+                </small>
 
-        <section id="content">
+            </div>
 
-            <h2>Welcome 👋</h2>
+        </button>
 
-            <p>Choose an activity and start improving.</p>
 
-        </section>
+        <button
+            class="menu-card"
+            onclick="openChallenge()">
 
-    </main>
+            <span class="icon">⚡</span>
 
-    <script src="app.js"></script>
+            <div>
+
+                <strong>
+                    Daily Challenge
+                </strong>
+
+                <small>
+                    Complete today's challenge
+                </small>
+
+            </div>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="openProgress()">
+
+            <span class="icon">📊</span>
+
+            <div>
+
+                <strong>
+                    Progress
+                </strong>
+
+                <small>
+                    See your improvement
+                </small>
+
+            </div>
+
+        </button>
+
+    </section>
+
+
+    <!-- APP CONTENT -->
+
+    <section id="content">
+
+        <h2>
+            🚀 Start improving
+        </h2>
+
+        <p>
+            Choose an activity above.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="app.js"></script>
 
 </body>
 
