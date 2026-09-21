@@ -882,3 +882,428 @@ new Date().toLocaleDateString("en-US",
 
 </body>
  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SECRET ✦ Quiz</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#f8f1ff,#eef7ff,#fff5f0);
+  color:#242331;
+}
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px 16px 90px;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.logo{
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.xp{
+  background:white;
+  padding:9px 13px;
+  border-radius:20px;
+  box-shadow:0 5px 20px #00000012;
+  font-weight:bold;
+}
+.card{
+  background:#ffffffd9;
+  backdrop-filter:blur(12px);
+  border-radius:25px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 10px 30px #00000012;
+}
+h1{font-size:29px;margin:5px 0 8px}
+h2{margin-top:0}
+.sub{color:#777;font-size:14px}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:15px 0;
+}
+.stat{
+  background:#f7f4ff;
+  padding:14px 8px;
+  border-radius:18px;
+  text-align:center;
+}
+.stat b{display:block;font-size:20px}
+select,button{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:14px;
+  font-size:15px;
+  margin-top:10px;
+}
+select{
+  background:#f3f1f8;
+}
+button{
+  background:#242331;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+button.secondary{
+  background:#eeeaf7;
+  color:#242331;
+}
+button.option{
+  background:white;
+  color:#242331;
+  text-align:left;
+  border:2px solid #eee;
+}
+button.option:hover{
+  border-color:#9d83ff;
+}
+.correct{
+  background:#dff8e7!important;
+  border-color:#55bb78!important;
+}
+.wrong{
+  background:#ffe2e2!important;
+  border-color:#ef7777!important;
+}
+.progress{
+  height:8px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0 20px;
+}
+.progress div{
+  height:100%;
+  background:#8d75ff;
+  width:0%;
+}
+.question{
+  font-size:20px;
+  font-weight:bold;
+  line-height:1.4;
+}
+.badge{
+  display:inline-block;
+  background:#eee8ff;
+  color:#7055d9;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+#quizScreen{display:none}
+#resultScreen{display:none}
+.explanation{
+  background:#f7f5fb;
+  padding:14px;
+  border-radius:15px;
+  margin-top:15px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">SECRET ✦</div>
+  <div class="xp">⚡ <span id="xp">0</span> XP</div>
+</header>
+
+<!-- START SCREEN -->
+<div id="startScreen">
+
+<div class="card">
+<h1>Quiz Zone 🧠</h1>
+<p class="sub">1,000 questions. Learn, challenge yourself and earn XP.</p>
+
+<div class="stats">
+<div class="stat">
+<b id="totalQuestions">1000</b>
+Questions
+</div>
+<div class="stat">
+<b id="bestScore">0</b>
+Best
+</div>
+<div class="stat">
+<b id="streak">0</b>
+Streak
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Choose your quiz</h2>
+
+<select id="category">
+<option value="All">All Subjects</option>
+<option value="Science">Science</option>
+<option value="Mathematics">Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="History">History</option>
+<option value="English">English</option>
+<option value="Reasoning">Reasoning & GK</option>
+</select>
+
+<select id="difficulty">
+<option value="All">All Difficulties</option>
+<option value="Easy">Easy</option>
+<option value="Medium">Medium</option>
+<option value="Hard">Hard</option>
+</select>
+
+<select id="amount">
+<option value="10">10 Questions</option>
+<option value="20">20 Questions</option>
+<option value="30">30 Questions</option>
+<option value="50">50 Questions</option>
+</select>
+
+<button onclick="startQuiz()">Start Quiz ✦</button>
+</div>
+
+<div class="card">
+<h2>How it works</h2>
+<p class="sub">
+✓ Random questions<br>
+✓ 1,000-question bank<br>
+✓ XP rewards<br>
+✓ Streak tracking<br>
+✓ Instant answers<br>
+✓ Progress saved automatically
+</p>
+</div>
+
+</div>
+
+<!-- QUIZ -->
+<div id="quizScreen">
+
+<div class="card">
+
+<div style="display:flex;justify-content:space-between">
+<span class="badge" id="categoryBadge">Science</span>
+<span id="questionNumber">1 / 10</span>
+</div>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<div id="explanation"></div>
+
+<button id="nextButton" onclick="nextQuestion()" style="display:none">
+Next Question →
+</button>
+
+</div>
+
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen">
+
+<div class="card" style="text-align:center">
+<h1>Quiz Complete! 🎉</h1>
+
+<h2 id="finalScore">0 / 10</h2>
+
+<p class="sub" id="finalMessage"></p>
+
+<div class="stats">
+<div class="stat">
+<b id="finalXP">0</b>
+XP
+</div>
+<div class="stat">
+<b id="finalCorrect">0</b>
+Correct
+</div>
+<div class="stat">
+<b id="finalPercent">0%</b>
+Score
+</div>
+</div>
+
+<button onclick="restartQuiz()">Play Again</button>
+<button class="secondary" onclick="home()">Back Home</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================================
+   SECRET QUIZ ENGINE
+   1000 QUESTIONS
+========================================= */
+
+const questionBank = [];
+
+/* ---------- SCIENCE ---------- */
+
+const science = [
+["What is the basic unit of life?","Cell",["Atom","Cell","Tissue","Organ"],"Easy"],
+["Which organ pumps blood around the body?","Heart",["Lungs","Brain","Heart","Kidney"],"Easy"],
+["Which gas do humans need for respiration?","Oxygen",["Nitrogen","Oxygen","Carbon dioxide","Hydrogen"],"Easy"],
+["Which planet is known as the Red Planet?","Mars",["Venus","Mars","Jupiter","Saturn"],"Easy"],
+["What force pulls objects toward Earth?","Gravity",["Friction","Magnetism","Gravity","Pressure"],"Easy"],
+["What is H2O commonly called?","Water",["Salt","Water","Oxygen","Hydrogen"],"Easy"],
+["Which organ is mainly used for breathing?","Lungs",["Heart","Liver","Lungs","Stomach"],"Easy"],
+["What is the center of an atom called?","Nucleus",["Electron","Nucleus","Shell","Ion"],"Medium"],
+["Which blood cells help fight infection?","White blood cells",["Red blood cells","White blood cells","Platelets","Plasma"],"Medium"],
+["What process do green plants use to make food?","Photosynthesis",["Respiration","Digestion","Photosynthesis","Filtration"],"Easy"],
+["Which vitamin is mainly produced in skin through sunlight?","Vitamin D",["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],"Easy"],
+["What is the boiling point of water at sea level?","100°C",["50°C","75°C","100°C","150°C"],"Easy"],
+["Which metal is liquid at room temperature?","Mercury",["Iron","Copper","Mercury","Aluminium"],"Medium"],
+["What is the nearest star to Earth?","The Sun",["Sirius","The Moon","The Sun","Polaris"],"Easy"],
+["Which part of a plant absorbs water?","Roots",["Leaves","Flowers","Roots","Fruit"],"Easy"],
+["What type of energy comes from the Sun?","Solar energy",["Nuclear energy","Solar energy","Sound energy","Chemical energy"],"Easy"],
+["Which organ filters waste from the blood?","Kidneys",["Heart","Kidneys","Lungs","Brain"],"Medium"],
+["What is the natural satellite of Earth?","Moon",["Mars","Moon","Sun","Venus"],"Easy"],
+["Which state of matter has a fixed shape?","Solid",["Liquid","Gas","Solid","Plasma"],"Easy"],
+["What instrument measures temperature?","Thermometer",["Barometer","Thermometer","Compass","Ammeter"],"Easy"]
+];
+
+/* ---------- GEOGRAPHY ---------- */
+
+const geography = [
+["What is the largest continent?","Asia",["Africa","Asia","Europe","Australia"],"Easy"],
+["What is the largest ocean?","Pacific Ocean",["Atlantic Ocean","Indian Ocean","Pacific Ocean","Arctic Ocean"],"Easy"],
+["Which country is famous for the pyramids of Giza?","Egypt",["India","Egypt","China","Mexico"],"Easy"],
+["What is the capital of India?","New Delhi",["Mumbai","New Delhi","Kolkata","Chennai"],"Easy"],
+["Which is the highest mountain above sea level?","Mount Everest",["K2","Mount Everest","Kilimanjaro","Elbrus"],"Easy"],
+["Which desert is the largest hot desert?","Sahara Desert",["Gobi Desert","Sahara Desert","Thar Desert","Kalahari Desert"],"Easy"],
+["Which ocean lies south of India?","Indian Ocean",["Pacific Ocean","Indian Ocean","Atlantic Ocean","Arctic Ocean"],"Easy"],
+["Which continent is known as the Dark Continent historically?","Africa",["Asia","Africa","Europe","Australia"],"Medium"],
+["What is the capital of Japan?","Tokyo",["Kyoto","Osaka","Tokyo","Hiroshima"],"Easy"],
+["Which line divides Earth into Northern and Southern Hemispheres?","Equator",["Prime Meridian","Equator","Tropic of Cancer","Arctic Circle"],"Easy"],
+["Which is the smallest continent?","Australia",["Europe","Australia","Antarctica","South America"],"Easy"],
+["Which country has the largest population?","India",["India","USA","Russia","Brazil"],"Medium"],
+["Which imaginary line passes through Greenwich?","Prime Meridian",["Equator","Prime Meridian","Tropic of Capricorn","International Date Line"],"Medium"],
+["What is the capital of France?","Paris",["Rome","Paris","Madrid","Berlin"],"Easy"],
+["Which is the coldest continent?","Antarctica",["Europe","Antarctica","Asia","North America"],"Easy"]
+];
+
+/* ---------- HISTORY ---------- */
+
+const history = [
+["Who founded the Maurya Empire?","Chandragupta Maurya",["Ashoka","Chandragupta Maurya","Akbar","Harsha"],"Easy"],
+["Who was known as the Great Mughal emperor who built the Taj Mahal?","Shah Jahan",["Akbar","Shah Jahan","Babur","Aurangzeb"],"Easy"],
+["Who was the first Mughal emperor?","Babur",["Akbar","Babur","Humayun","Shah Jahan"],"Easy"],
+["The Revolt of 1857 began against which power?","British rule",["French rule","British rule","Portuguese rule","Dutch rule"],"Easy"],
+["Who is associated with the policy of non-violence in India's freedom movement?","Mahatma Gandhi",["Subhas Chandra Bose","Mahatma Gandhi","Bhagat Singh","Jawaharlal Nehru"],"Easy"],
+["Who built the Red Fort in Delhi?","Shah Jahan",["Akbar","Shah Jahan","Babur","Aurangzeb"],"Medium"],
+["Which ancient civilization developed along the Indus River?","Indus Valley Civilization",["Roman Civilization","Indus Valley Civilization","Greek Civilization","Mayan Civilization"],"Easy"],
+["Who was Ashoka?","A Mauryan emperor",["A Mughal emperor","A Mauryan emperor","A British governor","A Greek king"],"Easy"],
+["Who wrote the Arthashastra?","Kautilya",["Kalidasa","Kautilya","Banabhatta","Tulsidas"],"Medium"],
+["The Taj Mahal is located in which city?","Agra",["Delhi","Agra","Jaipur","Lucknow"],"Easy"],
+["Who was the last Mughal emperor?","Bahadur Shah Zafar",["Akbar","Bahadur Shah Zafar","Aurangzeb","Humayun"],"Medium"],
+["Which movement began in 1942?","Quit India Movement",["Swadeshi Movement","Quit India Movement","Non-Cooperation Movement","Khilafat Movement"],"Medium"],
+["Who gave the slogan 'Jai Hind'?","Subhas Chandra Bose",["Mahatma Gandhi","Subhas Chandra Bose","Jawaharlal Nehru","Sardar Patel"],"Medium"],
+["Who was the founder of the Gupta dynasty?","Sri Gupta",["Ashoka","Sri Gupta","Harsha","Samudragupta"],"Hard"],
+["Which empire was ruled by Akbar?","Mughal Empire",["Maurya Empire","Mughal Empire","Gupta Empire","Chola Empire"],"Easy"]
+];
+
+/* ---------- ENGLISH ---------- */
+
+const english = [
+["Choose the noun: 'The boy runs quickly.'","boy",["runs","quickly","boy","the"],"Easy"],
+["What is the opposite of 'ancient'?","Modern",["Old","Modern","Historic","Past"],"Easy"],
+["Choose the correct plural of 'child'.","Children",["Childs","Childes","Children","Child"],"Easy"],
+["Which word is an adjective? 'The red ball bounced.'","red",["ball","bounced","red","the"],"Easy"],
+["What is a synonym of 'happy'?","Joyful",["Sad","Angry","Joyful","Tired"],"Easy"],
+["What is the past tense of 'go'?","Went",["Goed","Gone","Went","Going"],"Easy"],
+["Which punctuation mark ends a question?","Question mark",["Full stop","Comma","Question mark","Colon"],"Easy"],
+["Identify the verb: 'She sings beautifully.'","sings",["She","sings","beautifully","none"],"Easy"],
+["What is the opposite of 'expand'?","Contract",["Increase","Contract","Grow","Extend"],"Medium"],
+["Which word is an adverb? 'He ran quickly.'","quickly",["He","ran","quickly","none"],"Easy"],
+["Choose the correct article: ___ apple","an",["a","an","the","no article"],"Easy"],
+["What is a homophone of 'sea'?","See",["Say","See","She","Saw"],"Easy"],
+["Which is a pronoun?","They",["Beautiful","They","Running","School"],"Easy"],
+["What is the comparative form of 'good'?","Better",["Gooder","Best","Better","More good"],"Medium"],
+["Which sentence is interrogative?","Where are you going?",["I am going home.","Where are you going?","Close the door.","What a day!"],"Easy"]
+];
+
+/* ---------- MATH ---------- */
+
+const math = [
+["What is 8 × 7?","56",["48","54","56","64"],"Easy"],
+["What is 144 ÷ 12?","12",["10","11","12","14"],"Easy"],
+["What is 15 + 27?","42",["40","41","42","43"],"Easy"],
+["What is 100 - 37?","63",["53","63","67","73"],"Easy"],
+["What is 9²?","81",["18","72","81","90"],"Easy"],
+["What is 25% of 100?","25",["20","25","50","75"],"Easy"],
+["What is the square root of 64?","8",["6","7","8","9"],"Easy"],
+["What is 3/4 as a decimal?","0.75",["0.25","0.5","0.75","1.25"],"Medium"],
+["What is 2⁵?","32",["10","16","25","32"],"Medium"],
+["What is the perimeter of a square with side 5 cm?","20 cm",["10 cm","15 cm","20 cm","25 cm"],"Easy"],
+["What is 12 × 12?","144",["124","134","144","154"],"Easy"],
+["What is 50% of 80?","40",["20","30","40","50"],"Easy"],
+["What is 7 × 9?","63",["56","63","72","81"],"Easy"],
+["What is 1/2 + 1/2?","1",["1/2","1","2","0"],"Easy"],
+["What is the area of a rectangle 5 cm × 4 cm?","20 cm²",["9 cm²","18 cm²","20 cm²","25 cm²"],"Easy"]
+];
+
+/* ---------- REASONING / GK ---------- */
+
+const reasoning = [
+["Which number comes next: 2, 4, 6, 8, ?","10",["9","10","11","12"],"Easy"],
+["Which number comes next: 5, 10, 15, 20, ?","25",["22","24","25","30"],"Easy"],
+["How many days are in a leap year?","366",["364","365","366","367"],"Easy"],
+["How many sides does a hexagon have?","6",["5","6","7","8"],"Easy"],
+["Which is the odd one out?","Apple",["Carrot","Potato","Apple","Spinach"],"Easy"],
+["How many hours are in one day?","24",["12","20","24","48"],"Easy"],
+["Which number is prime?","17",["15","16","17","18"],"Easy"],
+["If today is Monday, what day is tomorrow?","Tuesday",["Sunday","Tuesday","Wednesday","Friday"],"Easy"],
+["How many minutes are in an hour?","60",["30","45","60","90"],"Easy"],
+["Which shape has three sides?","Triangle",["Square","Triangle","Circle","Rectangle"],"Easy"],
+["Which number is even?","28",["17","21","25","28"],"Easy"],
+["Complete: A, C, E, G, ?","I",["H","I","J","K"],"Easy"],
+["Which is heavier: 1 kg of iron or 1 kg of cotton?","They weigh the same",["Iron","Cotton","They weigh the same","Cannot know"],"Medium"],
+["How many continents are commonly recognized?","7",["5","6","7","8"],"Easy"],
+["Which is the largest mammal?","Blue whale",["Elephant","Blue whale","Giraffe","Hippopotamus"],"Easy"]
+];
+
+/* =========================================
+   CREATE 1000 QUESTIONS
+========================================= */
+
+const pools = {
+Science: science,
+Mathematics: math,
+Geography: geography,
+History: history,
+English: english,
+Reasoning: reasoning
+};
+
+function addQuestion(q, category){
