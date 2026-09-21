@@ -3,12 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#8b7cf6">
+    <meta name="theme-color" content="#7c5cff">
 
     <title>Secret ✦</title>
 
@@ -17,193 +14,236 @@
 
 <body>
 
-<header>
+    <!-- APP HEADER -->
+    <header class="app-header">
 
-    <div class="logo">
-        SECRET ✦
-    </div>
-
-    <p>
-        Focus. Learn. Improve.
-    </p>
-
-</header>
-
-
-<main>
-
-    <!-- STATS -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-            <span>🔥</span>
-            <strong id="streak">0</strong>
-            <small>Streak</small>
+        <div>
+            <h1>SECRET ✦</h1>
+            <p>Focus. Learn. Improve.</p>
         </div>
 
-        <div class="stat-card">
-            <span>⭐</span>
-            <strong id="xp">0</strong>
-            <small>XP</small>
-        </div>
+        <button class="profile-btn" onclick="openSettings()">
+            ⚙️
+        </button>
 
-        <div class="stat-card">
-            <span>🎯</span>
-            <strong id="sessions">0</strong>
-            <small>Sessions</small>
-        </div>
-
-    </section>
+    </header>
 
 
-    <!-- WELCOME -->
+    <!-- MAIN APP -->
+    <main>
 
-    <section class="hero">
+        <!-- LEVEL CARD -->
+        <section class="level-card">
 
-        <h2>
-            Welcome back 👋
-        </h2>
+            <div class="level-top">
 
-        <p>
-            Small progress every day creates big results.
-        </p>
+                <div>
+                    <span class="small-label">YOUR LEVEL</span>
+                    <h2>Level <span id="level">1</span></h2>
+                </div>
 
-    </section>
-
-
-    <!-- MENU -->
-
-    <section class="menu">
-
-        <button
-            class="menu-card"
-            onclick="openFocus()">
-
-            <span class="icon">🎯</span>
-
-            <div>
-
-                <strong>
-                    Focus
-                </strong>
-
-                <small>
-                    Study without distractions
-                </small>
+                <div class="xp-number">
+                    ⭐ <span id="xp">0</span> XP
+                </div>
 
             </div>
 
-        </button>
+            <div class="xp-bar">
+                <div id="xpProgress"></div>
+            </div>
+
+            <p>
+                <span id="xpNeeded">100</span> XP to next level
+            </p>
+
+        </section>
 
 
-        <button
-            class="menu-card"
-            onclick="openGames()">
+        <!-- QUICK STATS -->
+        <section class="stats">
 
-            <span class="icon">🧠</span>
+            <div class="stat-card">
+                <span>🔥</span>
+                <strong id="streak">0</strong>
+                <small>Streak</small>
+            </div>
 
-            <div>
+            <div class="stat-card">
+                <span>🎯</span>
+                <strong id="sessions">0</strong>
+                <small>Sessions</small>
+            </div>
 
-                <strong>
-                    Mind Games
-                </strong>
+            <div class="stat-card">
+                <span>🧠</span>
+                <strong id="games">0</strong>
+                <small>Games</small>
+            </div>
 
-                <small>
-                    Sharpen your brain
-                </small>
+        </section>
+
+
+        <!-- TODAY -->
+        <section class="today-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">TODAY</span>
+                    <h2>Your Daily Goal</h2>
+                </div>
+
+                <span class="goal-icon">⚡</span>
 
             </div>
 
-        </button>
+            <p>
+                Complete your activities and keep your streak alive.
+            </p>
 
-
-        <button
-            class="menu-card"
-            onclick="openQuiz()">
-
-            <span class="icon">📚</span>
-
-            <div>
-
-                <strong>
-                    Quiz
-                </strong>
-
-                <small>
-                    Test your knowledge
-                </small>
-
+            <div class="goal-progress">
+                <div id="dailyProgress"></div>
             </div>
 
+            <span id="dailyText">0 of 3 completed</span>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features">
+
+            <h2>Explore Secret</h2>
+
+
+            <button class="feature-card" onclick="openFocus()">
+
+                <span class="feature-icon">🎯</span>
+
+                <div>
+                    <strong>Focus</strong>
+                    <small>Study without distractions</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="feature-card" onclick="openGames()">
+
+                <span class="feature-icon">🧠</span>
+
+                <div>
+                    <strong>Mind Games</strong>
+                    <small>Train your brain</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="feature-card" onclick="openQuiz()">
+
+                <span class="feature-icon">📚</span>
+
+                <div>
+                    <strong>Quiz</strong>
+                    <small>Test your knowledge</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="feature-card" onclick="openChallenge()">
+
+                <span class="feature-icon">⚡</span>
+
+                <div>
+                    <strong>Challenges</strong>
+                    <small>Complete daily challenges</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="feature-card" onclick="openPlanner()">
+
+                <span class="feature-icon">📅</span>
+
+                <div>
+                    <strong>Study Planner</strong>
+                    <small>Plan your study time</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="feature-card" onclick="openProgress()">
+
+                <span class="feature-icon">📊</span>
+
+                <div>
+                    <strong>Progress</strong>
+                    <small>See your improvement</small>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+        </section>
+
+
+        <!-- CONTENT AREA -->
+        <section id="content">
+
+            <h2>🚀 Ready?</h2>
+
+            <p>
+                Choose something above and start improving.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+
+        <button onclick="goHome()">
+            🏠
+            <span>Home</span>
         </button>
 
-
-        <button
-            class="menu-card"
-            onclick="openChallenge()">
-
-            <span class="icon">⚡</span>
-
-            <div>
-
-                <strong>
-                    Daily Challenge
-                </strong>
-
-                <small>
-                    Complete today's challenge
-                </small>
-
-            </div>
-
+        <button onclick="openFocus()">
+            🎯
+            <span>Focus</span>
         </button>
 
-
-        <button
-            class="menu-card"
-            onclick="openProgress()">
-
-            <span class="icon">📊</span>
-
-            <div>
-
-                <strong>
-                    Progress
-                </strong>
-
-                <small>
-                    See your improvement
-                </small>
-
-            </div>
-
+        <button onclick="openQuiz()">
+            📚
+            <span>Quiz</span>
         </button>
 
-    </section>
+        <button onclick="openProgress()">
+            📊
+            <span>Progress</span>
+        </button>
+
+    </nav>
 
 
-    <!-- APP CONTENT -->
-
-    <section id="content">
-
-        <h2>
-            🚀 Start improving
-        </h2>
-
-        <p>
-            Choose an activity above.
-        </p>
-
-    </section>
-
-</main>
-
-
-<!-- JAVASCRIPT -->
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
 
-</html>
+    </html>
