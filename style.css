@@ -1,108 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f7f3ff, #eef7ff);
+    color: #252331;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
 
-    <title>Secret - Improve Every Day</title>
+header {
+    text-align: center;
+    padding: 25px 10px;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
+.logo {
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
 
-<body>
+header p {
+    color: #777;
+    margin-top: 8px;
+}
 
-<header>
-    <div class="logo">SECRET ✦</div>
-    <p>Focus. Learn. Improve.</p>
-</header>
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
 
-<main>
+.stat-card {
+    background: white;
+    padding: 17px 8px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
 
-    <section class="stats">
+.stat-card span {
+    font-size: 22px;
+}
 
-        <div class="stat-card">
-            <span>🔥</span>
-            <strong id="streak">0</strong>
-            <small>Streak</small>
-        </div>
+.stat-card strong {
+    display: block;
+    font-size: 22px;
+    margin: 4px 0;
+}
 
-        <div class="stat-card">
-            <span>⭐</span>
-            <strong id="xp">0</strong>
-            <small>XP</small>
-        </div>
+.stat-card small {
+    color: #777;
+}
 
-        <div class="stat-card">
-            <span>🎯</span>
-            <strong id="sessions">0</strong>
-            <small>Sessions</small>
-        </div>
+.hero {
+    background: white;
+    padding: 24px;
+    border-radius: 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
 
-    </section>
+.hero h2 {
+    margin-bottom: 8px;
+}
 
-    <section class="hero">
-        <h2>Ready to improve? 🚀</h2>
-        <p>Choose an activity and start your session.</p>
-    </section>
+.hero p {
+    color: #777;
+}
 
-    <section class="menu">
+.menu {
+    display: grid;
+    gap: 12px;
+}
 
-        <button class="menu-card" onclick="openFocus()">
-            <span class="icon">🎯</span>
-            <div>
-                <strong>Focus</strong>
-                <small>Deep work without distractions</small>
-            </div>
-        </button>
+.menu-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: none;
+    background: white;
+    padding: 19px;
+    border-radius: 22px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    transition: 0.2s;
+}
 
-        <button class="menu-card" onclick="openGames()">
-            <span class="icon">🧠</span>
-            <div>
-                <strong>Mind Games</strong>
-                <small>Train your brain</small>
-            </div>
-        </button>
+.menu-card:hover {
+    transform: translateY(-3px);
+}
 
-        <button class="menu-card" onclick="openQuiz()">
-            <span class="icon">📚</span>
-            <div>
-                <strong>Quiz</strong>
-                <small>Test your knowledge</small>
-            </div>
-        </button>
+.icon {
+    font-size: 32px;
+}
 
-        <button class="menu-card" onclick="openChallenge()">
-            <span class="icon">⚡</span>
-            <div>
-                <strong>Daily Challenge</strong>
-                <small>Complete today's goal</small>
-            </div>
-        </button>
+.menu-card strong {
+    display: block;
+    font-size: 19px;
+}
 
-        <button class="menu-card" onclick="openProgress()">
-            <span class="icon">📊</span>
-            <div>
-                <strong>Progress</strong>
-                <small>See your improvement</small>
-            </div>
-        </button>
+.menu-card small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+}
 
-    </section>
+#content {
+    background: white;
+    padding: 25px;
+    border-radius: 24px;
+    margin-top: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
 
-    <section id="content">
+#content h2 {
+    margin-bottom: 10px;
+}
 
-        <h2>👋 Welcome to Secret</h2>
+button {
+    border: none;
+    background: #eee9ff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    margin: 6px 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        <p>
-            Small improvements every day create big results.
-        </p>
+button:hover {
+    transform: translateY(-2px);
+}
 
-    </section>
+.timer {
+    text-align: center;
+}
 
-</main>
+.timer-display {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 25px 0;
+}
 
-<script src="app.js"></script>
+.progress-bar {
+    height: 10px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
 
-</body>
-</html>
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #8b7cf6;
+    transition: width 0.5s;
+}
+
+.question {
+    font-size: 18px;
+    margin: 20px 0;
+    line-height: 1.5;
+}
+
+.answer {
+    width: 100%;
+    margin: 6px 0;
+}
+
+.success {
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 450px) {
+
+    body {
+        padding: 14px;
+    }
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 14px 5px;
+    }
+
+    .timer-display {
+        font-size: 45px;
+    }
+}
