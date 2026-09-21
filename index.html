@@ -1,249 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f4ff">
+<title>Secret ✦</title>
 
-    <meta name="theme-color" content="#7c5cff">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    <title>Secret ✦</title>
+:root{
+ --bg:#f8f7fc;
+ --card:#fff;
+ --text:#242333;
+ --muted:#8b8999;
+ --purple:#7667e8;
+ --purple2:#9b8df5;
+ --pink:#ffdce7;
+ --blue:#dfeaff;
+ --green:#dff4e9;
+ --yellow:#fff0c9;
+ --line:#eeeaf5;
+}
 
-    <link rel="stylesheet" href="style.css">
+body{
+ font-family:Arial,sans-serif;
+ background:linear-gradient(160deg,#f8f5ff,#f4f9ff);
+ color:var(--text);
+ min-height:100vh;
+ padding-bottom:90px;
+}
+
+.app{
+ max-width:520px;
+ margin:auto;
+ padding:18px;
+}
+
+button{
+ font-family:inherit;
+ border:0;
+ cursor:pointer;
+}
+
+.top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:800;
+ letter-spacing:2px;
+}
+
+.subtitle{
+ color:var(--muted);
+ font-size:13px;
+ margin-top:4px;
+}
+
+.avatar{
+ width:44px;
+ height:44px;
+ border-radius:50%;
+ background:linear-gradient(135deg,#8e82ee,#c8bfff);
+ display:grid;
+ place-items:center;
+ color:white;
+ font-size:20px;
+}
+
+.hero{
+ border-radius:30px;
+ padding:24px;
+ background:
+ linear-gradient(135deg,#8174e8,#a99df5);
+ color:white;
+ box-shadow:0 15px 35px #8074e833;
+ position:relative;
+ overflow:hidden;
+}
+
+.hero:after{
+ content:"";
+ position:absolute;
+ width:160px;
+ height:160px;
+ border-radius:50%;
+ background:#ffffff18;
+ right:-50px;
+ top:-60px;
+}
+
+.greeting{
+ font-size:13px;
+ opacity:.8;
+}
+
+.hero h1{
+ font-size:28px;
+ margin:7px 0 20px;
+}
+
+.xp-row{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.level{
+ font-size:14px;
+ opacity:.85;
+}
+
+.xp{
+ font-weight:bold;
+}
+
+.progress{
+ height:9px;
+ background:#ffffff38;
+ border-radius:20px;
+ margin-top:12px;
+ overflow:hidden;
+}
+
+.progress div{
+ height:100%;
+ width:35%;
+ background:white;
+ border-radius:20px;
+ transition:.4s;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin:16px 0;
+}
+
+.stat{
+ background:var(--card);
+ border-radius:21px;
+ padding:15px 7px;
+ text-align:center;
+ box-shadow:0 8px 25px #36304a0b;
+}
+
+.stat .icon{font-size:20px}
+.stat strong{display:block;font-size:20px;margin:5px}
+.stat span:last-child{font-size:11px;color:var(--muted)}
+
+.section{
+ margin-top:23px;
+}
+
+.section-title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:12px;
+}
+
+.section-title h2{font-size:19px}
+.section-title span{font-size:12px;color:var(--purple)}
+
+.goal{
+ background:white;
+ border-radius:25px;
+ padding:20px;
+ box-shadow:0 8px 25px #36304a0b;
+}
+
+.goal-head{
+ display:flex;
+ justify-content:space-between;
+}
+
+.goal-icon{
+ width:45px;
+ height:45px;
+ border-radius:15px;
+ background:var(--pink);
+ display:grid;
+ place-items:center;
+ font-size:22px;
+}
+
+.goal p{
+ color:var(--muted);
+ font-size:13px;
+ margin:10px 0 15px;
+ line-height:1.5;
+}
+
+.goalbar{
+ height:8px;
+ background:#eee;
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.goalbar div{
+ height:100%;
+ width:33%;
+ background:var(--purple);
+ border-radius:20px;
+}
+
+.actions{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+}
+
+.action{
+ background:white;
+ border-radius:20px;
+ padding:15px 5px;
+ text-align:center;
+ box-shadow:0 8px 25px #36304a0b;
+ transition:.2s;
+}
+
+.action:active{transform:scale(.95)}
+
+.action-icon{
+ width:45px;
+ height:45px;
+ margin:auto;
+ border-radius:15px;
+ display:grid;
+ place-items:center;
+ font-size:21px;
+}
+
+.action:nth-child(1) .action-icon{background:var(--pink)}
+.action:nth-child(2) .action-icon{background:var(--blue)}
+.action:nth-child(3) .action-icon{background:var(--green)}
+.action:nth-child(4) .action-icon{background:var(--yellow)}
+
+.action small{
+ display:block;
+ margin-top:8px;
+ font-size:11px;
+}
+
+.feature{
+ background:white;
+ border-radius:22px;
+ padding:17px;
+ margin-bottom:10px;
+ display:flex;
+ align-items:center;
+ gap:14px;
+ box-shadow:0 8px 25px #36304a08;
+}
+
+.feature-icon{
+ width:48px;
+ height:48px;
+ border-radius:16px;
+ display:grid;
+ place-items:center;
+ font-size:23px;
+ background:#eeeaff;
+}
+
+.feature-info{flex:1}
+.feature-info strong{display:block}
+.feature-info small{
+ color:var(--muted);
+ display:block;
+ margin-top:4px;
+}
+
+.arrow{
+ color:#aaa;
+ font-size:25px;
+}
+
+.view{display:none}
+.view.active{display:block}
+
+.back{
+ background:white;
+ padding:11px 15px;
+ border-radius:14px;
+ margin-bottom:18px;
+}
+
+.timer{
+ background:white;
+ border-radius:30px;
+ padding:35px 20px;
+ text-align:center;
+ box-shadow:0 10px 30px #36304a0b;
+}
+
+.circle{
+ width:220px;
+ height:220px;
+ border-radius:50%;
+ margin:auto;
+ display:grid;
+ place-items:center;
+ border:13px solid #e5e1ff;
+ box-shadow:inset 0 0 0 7px #faf9ff;
+}
+
+.time{
+ font-size:43px;
+ font-weight:700;
+}
+
+.timer small{color:var(--muted)}
+
+.primary{
+ background:var(--purple);
+ color:white;
+ padding:14px 30px;
+ border-radius:18px;
+ margin-top:25px;
+ font-weight:bold;
+}
+
+.quiz-card{
+ background:white;
+ padding:24px;
+ border-radius:25px;
+ box-shadow:0 8px 25px #36304a0b;
+}
+
+.choice{
+ width:100%;
+ background:#f7f5fc;
+ padding:15px;
+ border-radius:15px;
+ text-align:left;
+ margin-top:10px;
+}
+
+.choice:hover{background:#eae6ff}
+
+.game-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.game{
+ background:white;
+ padding:25px 15px;
+ border-radius:22px;
+ text-align:center;
+ box-shadow:0 8px 25px #36304a0b;
+}
+
+.game div{font-size:35px;margin-bottom:10px}
+
+.task{
+ background:white;
+ border-radius:18px;
+ padding:15px;
+ margin:9px 0;
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+
+.task input{width:19px;height:19px}
+
+.nav{
+ position:fixed;
+ bottom:12px;
+ left:50%;
+ transform:translateX(-50%);
+ width:min(500px,calc(100% - 24px));
+ background:#fffffff2;
+ backdrop-filter:blur(18px);
+ border:1px solid #ffffff;
+ border-radius:25px;
+ padding:8px;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ box-shadow:0 12px 35px #28223d22;
+ z-index:20;
+}
+
+.nav button{
+ background:none;
+ padding:7px 2px;
+ color:#9995a8;
+ font-size:19px;
+ border-radius:15px;
+}
+
+.nav button.active{
+ color:var(--purple);
+ background:#f0edff;
+}
+
+.nav span{
+ display:block;
+ font-size:9px;
+ margin-top:3px;
+}
+
+@media(max-width:380px){
+ .app{padding:13px}
+ .actions{gap:6px}
+ .hero h1{font-size:24px}
+}
+</style>
 </head>
 
 <body>
 
-    <!-- APP HEADER -->
-    <header class="app-header">
+<div class="app">
+
+<!-- HOME -->
+<div id="home" class="view active">
+
+<div class="top">
+ <div>
+  <div class="logo">SECRET ✦</div>
+  <div class="subtitle">Focus • Learn • Grow</div>
+ </div>
+ <button class="avatar" onclick="show('profile')">✦</button>
+</div>
+
+<div class="hero">
+ <div class="greeting">GOOD MORNING ☀️</div>
+ <h1>Let's become<br>better today.</h1>
+
+ <div class="xp-row">
+  <span class="level">LEVEL 5</span>
+  <span class="xp">245 / 300 XP</span>
+ </div>
+
+ <div class="progress"><div></div></div>
+</div>
+
+<div class="stats">
+ <div class="stat">
+  <span class="icon">🔥</span>
+  <strong id="streak">7</strong>
+  <span>Day streak</span>
+ </div>
+ <div class="stat">
+  <span class="icon">🎯</span>
+  <strong>3/3</strong>
+  <span>Daily goal</span>
+ </div>
+ <div class="stat">
+  <span class="icon">🧠</span>
+  <strong id="games">5</strong>
+  <span>Games</span>
+ </div>
+</div>
+
+<div class="section">
+<div class="section-title">
+ <h2>Today's Goal</h2>
+ <span>3 / 5</span>
+</div>
+
+<div class="goal">
+ <div class="goal-head">
+  <div>
+   <strong>Build your streak ✨</strong>
+   <p>Complete a focus session and one brain challenge today.</p>
+  </div>
+  <div class="goal-icon">🎯</div>
+ </div>
+ <div class="goalbar"><div></div></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title"><h2>Quick Actions</h2></div>
+
+<div class="actions">
+ <button class="action" onclick="show('focus')">
+  <div class="action-icon">⏱️</div>
+  <small>Focus</small>
+ </button>
+
+ <button class="action" onclick="show('quiz')">
+  <div class="action-icon">📚</div>
+  <small>Quiz</small>
+ </button>
+
+ <button class="action" onclick="show('games')">
+  <div class="action-icon">🧠</div>
+  <small>Games</small>
+ </button>
+
+ <button class="action" onclick="show('planner')">
+  <div class="action-icon">📅</div>
+  <small>Planner</small>
+ </button>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title"><h2>Explore Secret</h2></div>
+
+<button class="feature" onclick="show('progress')">
+ <div class="feature-icon">📊</div>
+ <div class="feature-info">
+  <strong>Your Progress</strong>
+  <small>See your growth and statistics</small>
+ </div>
+ <span class="arrow">›</span>
+</button>
+
+<button class="feature" onclick="show('achievements')">
+ <div class="feature-icon">🏆</div>
+ <div class="feature-info">
+  <strong>Achievements</strong>
+  <small>Unlock badges and milestones</small>
+ </div>
+ <span class="arrow">›</span>
+</button>
 
-        <div>
-            <h1>SECRET ✦</h1>
-            <p>Focus. Learn. Improve.</p>
-        </div>
+</div>
+</div>
 
-        <button class="profile-btn" onclick="openSettings()">
-            ⚙️
-        </button>
 
-    </header>
+<!-- FOCUS -->
+<div id="focus" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
 
+<div class="section-title">
+<h2>Focus</h2>
+<span>Pomodoro</span>
+</div>
 
-    <!-- MAIN APP -->
-    <main>
+<div class="timer">
+<div class="circle">
+ <div>
+  <div class="time" id="time">25:00</div>
+  <small>Focus time</small>
+ </div>
+</div>
 
-        <!-- LEVEL CARD -->
-        <section class="level-card">
+<button class="primary" onclick="startTimer()" id="timerBtn">▶ Start</button>
+</div>
+</div>
 
-            <div class="level-top">
+
+<!-- QUIZ -->
+<div id="quiz" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
+
+<div class="section-title">
+<h2>Daily Quiz</h2>
+<span>+25 XP</span>
+</div>
+
+<div class="quiz-card">
+<p id="question">Which planet is known as the Red Planet?</p>
+
+<button class="choice" onclick="answer(this,'wrong')">Earth</button>
+<button class="choice" onclick="answer(this,'correct')">Mars</button>
+<button class="choice" onclick="answer(this,'wrong')">Venus</button>
+<button class="choice" onclick="answer(this,'wrong')">Jupiter</button>
+
+<p id="quizResult" style="margin-top:15px;color:#7667e8"></p>
+</div>
+</div>
+
+
+<!-- GAMES -->
+<div id="games" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
 
-                <div>
-                    <span class="small-label">YOUR LEVEL</span>
-                    <h2>Level <span id="level">1</span></h2>
-                </div>
+<div class="section-title">
+<h2>Brain Games</h2>
+<span>Train your mind ✨</span>
+</div>
 
-                <div class="xp-number">
-                    ⭐ <span id="xp">0</span> XP
-                </div>
+<div class="game-grid">
 
-            </div>
+<button class="game" onclick="numberGame()">
+<div>🔢</div>
+<strong>Number Logic</strong>
+</button>
 
-            <div class="xp-bar">
-                <div id="xpProgress"></div>
-            </div>
+<button class="game" onclick="memoryGame()">
+<div>🧠</div>
+<strong>Memory</strong>
+</button>
+
+<button class="game" onclick="patternGame()">
+<div>🔷</div>
+<strong>Pattern</strong>
+</button>
+
+<button class="game" onclick="mathGame()">
+<div>➕</div>
+<strong>Quick Math</strong>
+</button>
+
+</div>
+
+<p id="gameResult" style="text-align:center;margin-top:20px;color:#7667e8"></p>
+</div>
+
+
+<!-- PLANNER -->
+<div id="planner" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
+
+<div class="section-title">
+<h2>Study Planner</h2>
+<span id="date"></span>
+</div>
+
+<button class="primary" onclick="addTask()">＋ Add Task</button>
+
+<div id="tasks" style="margin-top:15px"></div>
+</div>
+
+
+<!-- PROGRESS -->
+<div id="progress" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
+
+<div class="section-title">
+<h2>Progress</h2>
+<span>This week</span>
+</div>
+
+<div class="goal">
+<h3>Level 5</h3>
+<p>245 / 300 XP</p>
+<div class="goalbar"><div style="width:82%"></div></div>
+</div>
+
+<div class="stats">
+<div class="stat"><strong>7</strong><span>Streak</span></div>
+<div class="stat"><strong>8h</strong><span>Focus</span></div>
+<div class="stat"><strong>92%</strong><span>Quiz</span></div>
+</div>
+
+<div class="goal">
+<h3>Weekly Activity</h3>
+<p>Mon ▰▰▰▰▰</p>
+<p>Tue ▰▰▰</p>
+<p>Wed ▰▰▰▰</p>
+<p>Thu ▰▰</p>
+<p>Fri ▰▰▰▰▰</p>
+</div>
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+<div id="achievements" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
+
+<div class="section-title">
+<h2>Achievements</h2>
+<span>3 unlocked</span>
+</div>
+
+<div class="game-grid">
+
+<div class="game"><div>🔥</div><strong>7 Day Streak</strong></div>
+<div class="game"><div>🎯</div><strong>Goal Getter</strong></div>
+<div class="game"><div>🧠</div><strong>Brain Trainer</strong></div>
+<div class="game"><div>🏆</div><strong>Quiz Master</strong></div>
+
+</div>
+</div>
+
+
+<!-- PROFILE -->
+<div id="profile" class="view">
+<button class="back" onclick="show('home')">‹ Home</button>
+
+<div class="goal" style="text-align:center">
+<div class="avatar" style="margin:auto">✦</div>
+<h2 style="margin-top:12px">Secret User</h2>
+<p>Your journey to becoming better every day.</p>
+</div>
+
+<div class="section">
+<button class="feature">
+<div class="feature-icon">🎨</div>
+<div class="feature-info">
+<strong>Appearance</strong>
+<small>Customize Secret</small>
+</div>
+<span>›</span>
+</button>
 
-            <p>
-                <span id="xpNeeded">100</span> XP to next level
-            </p>
+<button class="feature">
+<div class="feature-icon">🔔</div>
+<div class="feature-info">
+<strong>Reminders</strong>
+<small>Daily motivation</small>
+</div>
+<span>›</span>
+</button>
+
+<button class="feature">
+<div class="feature-icon">⚙️</div>
+<div class="feature-info">
+<strong>Settings</strong>
+<small>App preferences</small>
+</div>
+<span>›</span>
+</button>
+</div>
+</div>
 
-        </section>
+</div>
+
+
+<!-- NAVIGATION -->
+<nav class="nav">
+<button class="active" onclick="show('home')">⌂<span>Home</span></button>
+<button onclick="show('focus')">◷<span>Focus</span></button>
+<button onclick="show('quiz')">▣<span>Learn</span></button>
+<button onclick="show('planner')">□<span>Planner</span></button>
+<button onclick="show('profile')">○<span>Profile</span></button>
+</nav>
 
 
-        <!-- QUICK STATS -->
-        <section class="stats">
+<script>
 
-            <div class="stat-card">
-                <span>🔥</span>
-                <strong id="streak">0</strong>
-                <small>Streak</small>
-            </div>
+let timerSeconds=1500;
+let timerRunning=false;
+let timerInterval;
 
-            <div class="stat-card">
-                <span>🎯</span>
-                <strong id="sessions">0</strong>
-                <small>Sessions</small>
-            </div>
+function show(page){
 
-            <div class="stat-card">
-                <span>🧠</span>
-                <strong id="games">0</strong>
-                <small>Games</small>
-            </div>
+ document.querySelectorAll(".view").forEach(v=>{
+   v.classList.remove("active");
+ });
 
-        </section>
+ document.getElementById(page).classList.add("active");
 
+ window.scrollTo({top:0,behavior:"smooth"});
 
-        <!-- TODAY -->
-        <section class="today-card">
+ document.querySelectorAll(".nav button").forEach(b=>{
+   b.classList.remove("active");
+ });
 
-            <div class="section-heading">
+ if(page==="home")document.querySelector(".nav button:nth-child(1)").classList.add("active");
+ if(page==="focus")document.querySelector(".nav button:nth-child(2)").classList.add("active");
+ if(page==="quiz")document.querySelector(".nav button:nth-child(3)").classList.add("active");
+ if(page==="planner")document.querySelector(".nav button:nth-child(4)").classList.add("active");
+ if(page==="profile")document.querySelector(".nav button:nth-child(5)").classList.add("active");
+}
 
-                <div>
-                    <span class="small-label">TODAY</span>
-                    <h2>Your Daily Goal</h2>
-                </div>
 
-                <span class="goal-icon">⚡</span>
+function updateTimer(){
 
-            </div>
+ let m=Math.floor(timerSeconds/60);
+ let s=timerSeconds%60;
 
-            <p>
-                Complete your activities and keep your streak alive.
-            </p>
+ document.getElementById("time").textContent=
+ String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
 
-            <div class="goal-progress">
-                <div id="dailyProgress"></div>
-            </div>
+ if(timerSeconds<=0){
+   clearInterval(timerInterval);
+   timerRunning=false;
+   document.getElementById("timerBtn").textContent="✓ Completed";
+   alert("Focus session complete! +25 XP ✨");
+ }
+}
 
-            <span id="dailyText">0 of 3 completed</span>
 
-        </section>
+function startTimer(){
 
+ if(timerRunning){
+   clearInterval(timerInterval);
+   timerRunning=false;
+   document.getElementById("timerBtn").textContent="▶ Resume";
+   return;
+ }
 
-        <!-- FEATURES -->
-        <section class="features">
+ timerRunning=true;
+ document.getElementById("timerBtn").textContent="Ⅱ Pause";
 
-            <h2>Explore Secret</h2>
+ timerInterval=setInterval(()=>{
+   timerSeconds--;
+   updateTimer();
+ },1000);
+}
 
 
-            <button class="feature-card" onclick="openFocus()">
+function answer(btn,result){
 
-                <span class="feature-icon">🎯</span>
+ document.querySelectorAll(".choice").forEach(b=>b.disabled=true);
 
-                <div>
-                    <strong>Focus</strong>
-                    <small>Study without distractions</small>
-                </div>
+ if(result==="correct"){
+   document.getElementById("quizResult").textContent=
+   "✨ Correct! +25 XP";
+ }else{
+   document.getElementById("quizResult").textContent=
+   "Not quite — keep learning!";
+ }
+}
 
-                <span class="arrow">›</span>
 
-            </button>
+function numberGame(){
+ let n=Math.floor(Math.random()*20)+1;
+ document.getElementById("gameResult").textContent=
+ "🔢 Your challenge: Is "+n+" an even or odd number?";
+}
 
 
-            <button class="feature-card" onclick="openGames()">
+function memoryGame(){
+ document.getElementById("gameResult").textContent=
+ "🧠 Remember this: 7 • 2 • 9 • 4. Now say it backwards!";
+}
 
-                <span class="feature-icon">🧠</span>
 
-                <div>
-                    <strong>Mind Games</strong>
-                    <small>Train your brain</small>
-                </div>
+function patternGame(){
+ document.getElementById("gameResult").textContent=
+ "🔷 Pattern: 2, 4, 8, 16, ? → What comes next?";
+}
 
-                <span class="arrow">›</span>
 
-            </button>
+function mathGame(){
+ let a=Math.floor(Math.random()*20)+5;
+ let b=Math.floor(Math.random()*10)+1;
+ document.getElementById("gameResult").textContent=
+ "➕ Quick Math: "+a+" × "+b+" = ?";
+}
 
 
-            <button class="feature-card" onclick="openQuiz()">
+let tasks=[];
 
-                <span class="feature-icon">📚</span>
+function addTask(){
 
-                <div>
-                    <strong>Quiz</strong>
-                    <small>Test your knowledge</small>
-                </div>
+ let task=prompt("What do you want to study?");
 
-                <span class="arrow">›</span>
+ if(!task)return;
 
-            </button>
+ tasks.push(task);
+ renderTasks();
+}
 
 
-            <button class="feature-card" onclick="openChallenge()">
+function renderTasks(){
 
-                <span class="feature-icon">⚡</span>
+ let box=document.getElementById("tasks");
 
-                <div>
-                    <strong>Challenges</strong>
-                    <small>Complete daily challenges</small>
-                </div>
+ box.innerHTML=tasks.map((task,i)=>`
+ <div class="task">
+ <input type="checkbox" onchange="completeTask(this)">
+ <span>${task}</span>
+ </div>
+ `).join("");
+}
 
-                <span class="arrow">›</span>
 
-            </button>
+function completeTask(el){
 
+ if(el.checked){
+   el.parentElement.style.opacity=".5";
+   el.parentElement.style.textDecoration="line-through";
+ }
+}
 
-            <button class="feature-card" onclick="openPlanner()">
 
-                <span class="feature-icon">📅</span>
+document.getElementById("date").textContent=
+new Date().toLocaleDateString("en-US",
+{month:"short",day:"numeric"});
 
-                <div>
-                    <strong>Study Planner</strong>
-                    <small>Plan your study time</small>
-                </div>
-
-                <span class="arrow">›</span>
-
-            </button>
-
-
-            <button class="feature-card" onclick="openProgress()">
-
-                <span class="feature-icon">📊</span>
-
-                <div>
-                    <strong>Progress</strong>
-                    <small>See your improvement</small>
-                </div>
-
-                <span class="arrow">›</span>
-
-            </button>
-
-        </section>
-
-
-        <!-- CONTENT AREA -->
-        <section id="content">
-
-            <h2>🚀 Ready?</h2>
-
-            <p>
-                Choose something above and start improving.
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-nav">
-
-        <button onclick="goHome()">
-            🏠
-            <span>Home</span>
-        </button>
-
-        <button onclick="openFocus()">
-            🎯
-            <span>Focus</span>
-        </button>
-
-        <button onclick="openQuiz()">
-            📚
-            <span>Quiz</span>
-        </button>
-
-        <button onclick="openProgress()">
-            📊
-            <span>Progress</span>
-        </button>
-
-    </nav>
-
-
-    <script src="app.js"></script>
+</script>
 
 </body>
-
-    </html>
+      </html>
